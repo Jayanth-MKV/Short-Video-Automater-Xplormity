@@ -18,20 +18,21 @@ to_date_str = today.strftime('%Y-%m-%d')
 print(to_date_str)
 
 os.makedirs(DATA_PATH, exist_ok=True)
+os.makedirs(LOG_PATH, exist_ok=True)
 
-logger = MultiLogger("AutoYT", LOG_PATH).get_logger()
+logger = MultiLogger("AutoYT", LOG_PATH+"main.log").get_logger()
 
 top_topics = ["ai"]
 for tp in top_topics:
     folder = f"{DATA_PATH}/{to_date_str}_{tp}"
-    logger.info(os.listdir(folder))
+    
     if os.path.exists(folder) and len(os.listdir(folder))>6:
         logger.info(f"Videos Already Generated At {folder}")
         break
-    
 
     save_to=f"{folder}/news_data.json"
     os.makedirs(folder,exist_ok=True)
+    logger.info(os.listdir(folder))
     if not os.path.exists(save_to):
         get_and_save_news_data(tp,save_to,logger)
 
@@ -45,7 +46,7 @@ for tp in top_topics:
 
     while len(selected_elements) < 5 and iteration_count < max_iterations:
         index = random.randint(0, data_length - 1)
-        # index=3
+        # index=9
         logger.info(f"selected index: {index}")
         if index not in selected_elements:
             current_data = data[index]
@@ -59,7 +60,9 @@ for tp in top_topics:
 
         logger.info(f"selected index folder: {index_folder}")
         
-        if os.path.exists(f"{index_folder}"):
+        if os.path.exists(f"{index_folder}") and len(os.listdir(index_folder))>6:
+            print(os.listdir(index_folder))
+            logger.info(f"Index Folder {index_folder} already exists")
             continue
         os.makedirs(f"{index_folder}", exist_ok=True)
         
@@ -68,8 +71,11 @@ for tp in top_topics:
         save_text_to=f"{index_folder}/text_{tp}.txt"
 
         if not os.path.exists(save_text_to):
-            get_and_save_transcript(current_data,save_text_to,logger)
-
+            try:
+                get_and_save_transcript(current_data,save_text_to,logger)
+            except:
+                logger.info("Error Obtaining Transcript")
+                break
         
         save_videos_to=f"{index_folder}/videos"
         
@@ -86,7 +92,9 @@ for tp in top_topics:
 
         save_audio_to=f"{index_folder}/audio_{tp}.mp3"
         if not os.path.exists(save_audio_to):
-            load_and_get_audio(save_text_to,save_audio_to,logger)
+            if not load_and_get_audio(save_text_to,save_audio_to,logger):
+                logger.info(f"Audio Not Saved at {save_audio_to}")
+                break
 
 
         files = os.listdir(save_videos_to)
@@ -112,6 +120,8 @@ for tp in top_topics:
             get_and_save_metadata(logger,save_text_to,current_data,save_metadata_to)
         
         logger.info(f"Got Video Metadata")
+        break
+       
 
 
     # save_upload_to=f"{index_folder}/upload_{tp}.json"

@@ -4,7 +4,7 @@ load_dotenv(override=True)
 
 NEWS_API_KEY: str = os.getenv('NEWSDATA_API')
 NEWS_FETCH_LIMIT: int = 20
-LOG_PATH: str = 'YT/logs/main.log'
+LOG_PATH: str = 'logs/'
 DATA_PATH: str = 'YT/data'
 SUBSCRIBE_PATH: str = "assets/subscribe.mp4"
 PEXELS_API = os.getenv('PEXELS_API')
@@ -37,18 +37,17 @@ COLORS = [
 {'color': 'white', 'bg_color': 'black', 'stroke_color': 'red'},
 {'color': 'black', 'bg_color': 'white', 'stroke_color': 'white'},
 {'color': 'white', 'bg_color': 'black', 'stroke_color': 'orange'},
-{'color': 'black', 'bg_color': 'yellow', 'stroke_color': 'green'},
+# {'color': 'black', 'bg_color': 'yellow', 'stroke_color': 'green'},
 {'color': 'black', 'bg_color': 'white', 'stroke_color': 'blue'},
 {'color': 'white', 'bg_color': 'black', 'stroke_color': 'yellow'},
 {'color': 'black', 'bg_color': 'gray', 'stroke_color': 'purple'},
-{'color': 'white', 'bg_color': 'navy', 'stroke_color': 'red'},
 {'color': 'black', 'bg_color': 'black', 'stroke_color': 'white'},
-{'color': 'white', 'bg_color': 'lime', 'stroke_color': 'orange'},
+# {'color': 'white', 'bg_color': 'lime', 'stroke_color': 'orange'},
 {'color': 'black', 'bg_color': 'silver', 'stroke_color': 'cyan'},
-{'color': 'white', 'bg_color': 'maroon', 'stroke_color': 'navy'},
+# {'color': 'white', 'bg_color': 'maroon', 'stroke_color': 'navy'},
 {'color': 'black', 'bg_color': 'aqua', 'stroke_color': 'gray'},
 {'color': 'white', 'bg_color': 'teal', 'stroke_color': 'red'},
-{'color': 'black', 'bg_color': 'pink', 'stroke_color': 'yellow'}
+# {'color': 'black', 'bg_color': 'pink', 'stroke_color': 'yellow'}
 ]
 
 SYSTEM_PROMPT="""
@@ -89,6 +88,7 @@ SCRIPT_PROMPT=""""
 
 fontSettings = {
   "font": "assets/bold_font.ttf",
+  "sfont": "assets/Afont.otf",
   "fontsize": 100,
   "color": "#FFFF00",
   "stroke_color": "black",

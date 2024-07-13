@@ -64,6 +64,9 @@ def load_and_get_audio(transcript_path,save_audio_to,logger):
     tts(script, "en_uk_001", save_audio_to)
     logger.info(f"Saved Voice to {save_audio_to}")
     logger.info(f"Checking Voice duration")
+    if not os.path.exists(save_audio_to):
+        return False
+
     duration =  AudioFileClip(save_audio_to).duration
     while duration>56:
       print("[-] Final audio is too long. Trimming...")
@@ -71,6 +74,7 @@ def load_and_get_audio(transcript_path,save_audio_to,logger):
       tts(sc, "en_uk_001", save_audio_to)
       duration =  AudioFileClip(save_audio_to).duration
       logger.info(f"Updated Voice duration to {duration}")
+    return True
 
       
 
@@ -92,7 +96,8 @@ def get_and_save_videos(logger,queries,save_videos_to):
         # Save first video in urls to file system
         if len(video_urls)==0:
             logger.info("No Videos Found")
-            return False
+            break
+
         numbers = list(range(0,len(video_urls)))
         k=random.randint(1,2)
         selected_elements = random.sample(numbers, k)
@@ -102,7 +107,11 @@ def get_and_save_videos(logger,queries,save_videos_to):
             ext = video_url.split(".")[-1]
             save_video_to = f"{save_videos_to}/video_{query}_{index}.{ext}"
             save_video(logger,video_url,save_video_to)
-        return True
+            
+    if len(os.listdir(save_videos_to))<3:
+        return False
+
+    return True
 
 
 def get_and_save_metadata(logger,save_text_to,current_data,save_metadata_to):

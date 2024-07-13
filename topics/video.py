@@ -42,7 +42,7 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
     print(txt)
     t=format_text(txt, 20)
     title = "\n".join(t)
-    return TextClip(title,size=(size[0]*0.8,SIZE[1]),font=globalSettings["fontSettings"]["font"], color=globalSettings["fontSettings"]["color"], stroke_color=globalSettings["fontSettings"]["stroke_color"], stroke_width=globalSettings["fontSettings"]["stroke_width"])
+    return TextClip(title,size=(size[0]*0.8,SIZE[1]),font=globalSettings["fontSettings"]["sfont"], color=globalSettings["fontSettings"]["color"], stroke_color=globalSettings["fontSettings"]["stroke_color"], stroke_width=globalSettings["fontSettings"]["stroke_width"])
 
   # Split the subtitles position into horizontal and vertical
   horizontal_subtitles_position, vertical_subtitles_position = globalSettings["fontSettings"]["subtitles_position"].split(",")
