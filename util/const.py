@@ -88,7 +88,7 @@ SCRIPT_PROMPT=""""
 
 fontSettings = {
   "font": "assets/bold_font.ttf",
-  "sfont": "assets/Afont.otf",
+  "sfont": "assets/Afont.ttf",
   "fontsize": 100,
   "color": "#FFFF00",
   "stroke_color": "black",

@@ -46,7 +46,7 @@ for tp in top_topics:
 
     while len(selected_elements) < 5 and iteration_count < max_iterations:
         index = random.randint(0, data_length - 1)
-        # index=9
+        # index=4
         logger.info(f"selected index: {index}")
         if index not in selected_elements:
             current_data = data[index]
@@ -82,13 +82,15 @@ for tp in top_topics:
         if not os.path.exists(save_videos_to):
             script = load_txt(save_text_to)
             st = get_search_terms(current_data["title"],3,script)
+            retries = 1
 
             query = st            
             logger.info(f"Query: {query}")
-            while not get_and_save_videos(logger,query,save_videos_to):
+            while retries <= 3 and not get_and_save_videos(logger,query,save_videos_to):
                 logger.info("Failed to get videos, trying again...")
                 st = get_search_terms(current_data["title"],3,script)
                 query = st
+                retries +=1
 
         save_audio_to=f"{index_folder}/audio_{tp}.mp3"
         if not os.path.exists(save_audio_to):

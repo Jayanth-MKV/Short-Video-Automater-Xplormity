@@ -88,6 +88,7 @@ def get_and_save_subtitles(logger,audio_path,save_subtitles_to):
 def get_and_save_videos(logger,queries,save_videos_to):
     os.makedirs(save_videos_to, exist_ok=True)
     # queries.append("ai")
+    
     for query in queries:
         logger.info(f"Getting Stock Videos for {query}")
         video_urls = search_for_stock_videos(query,PEXELS_API,5,10)
@@ -106,8 +107,9 @@ def get_and_save_videos(logger,queries,save_videos_to):
             video_url = video_urls[index]
             ext = video_url.split(".")[-1]
             save_video_to = f"{save_videos_to}/video_{query}_{index}.{ext}"
+            logger.info(f"saving video url - {video_url}")
             save_video(logger,video_url,save_video_to)
-            
+
     if len(os.listdir(save_videos_to))<3:
         return False
 

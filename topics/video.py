@@ -79,7 +79,7 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
 
   result = CompositeVideoClip([
       video_clip,
-      txt_clip,
+    #   txt_clip,
       talk.set_mask(mask_clip).set_position(("right","bottom")).set_duration(duration),
       subtitles.set_position((horizontal_subtitles_position, vertical_subtitles_position)),
       subscribeMid.set_position(("center","center")).set_start(duration),
