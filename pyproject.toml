@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "Xplormity Video Automater"
+version = "0.1.0"
+description = ""
+authors = ["Jayanth MKV <@jayanthmkv>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10.0,<3.12"
+requests = "^2.32.3"
+boto3 = "^1.34.142"
+moviepy = "^1.0.3"
+assemblyai = "^0.30.0"
+pillow = "9.5.0"
+python-dotenv = "^1.0.1"
+google-api-python-client = "^2.137.0"
+oauth2client = "^4.1.3"
+g4f = "^0.3.2.2"
+
+[tool.pyright]
+# https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+useLibraryCodeForTypes = true
+exclude = [".cache"]
+
+[tool.ruff]
+# https://beta.ruff.rs/docs/configuration/
+select = ['E', 'W', 'F', 'I', 'B', 'C4', 'ARG', 'SIM']
+ignore = ['W291', 'W292', 'W293']
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
