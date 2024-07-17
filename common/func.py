@@ -52,7 +52,7 @@ def get_and_save_transcript(current_data,save_text_to,logger):
     ai_response = llama.ask_g4f(SCRIPT_PROMPT+"The context is as follows:"+json.dumps({
         "title":current_data["title"],
         "description":current_data["description"],
-        "paragraphs":5
+        "paragraphs":6
     }))
     save_txt(save_text_to,ai_response)
     logger.info(f"Generated AI Transcript, Saved at {save_text_to}")
