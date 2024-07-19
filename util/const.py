@@ -12,6 +12,9 @@ PIXABAY_API = os.getenv('PIXABAY_API')
 ASSEMBLY_AI_API_KEY = os.getenv('ASSEMBLY_AI_API_KEY')
 IMAGEMAGICK_BINARY = os.getenv('IMAGEMAGICK_BINARY')
 SIZE=(1080,1920)
+
+BRANDS = ["vivo", "oppo","samsung","redmi","nokia","iphone","pixel"]
+
 TITLE="What Happened in AI Today?"
 TITLES = [
     "Latest Advances in AI Research",

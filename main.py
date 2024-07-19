@@ -7,7 +7,7 @@ from moviepy.video.io.VideoFileClip import VideoFileClip
 from common.func import get_and_save_news_data, get_and_save_subtitles, get_and_save_transcript, get_and_save_videos, get_current_item, load_and_get_audio, load_and_get_item,get_and_save_metadata,upload_data_to_youtube
 from topics.video import CombineVideos
 from topics.search import get_search_terms
-from util.const import DATA_PATH, LOG_PATH, NEWS_API_KEY, PEXELS_API, PIXABAY_API
+from util.const import DATA_PATH, LOG_PATH,BRANDS, NEWS_API_KEY, PEXELS_API, PIXABAY_API
 from util.logger import MultiLogger
 from util.files import load_txt
 
@@ -35,11 +35,9 @@ for tp in top_topics:
     logger.info(os.listdir(folder))
     if not os.path.exists(save_to):
         get_and_save_news_data(tp,save_to,logger)
-
     
     data = load_and_get_item(save_to,logger)
     data_length = len(data)
-    brands = ["vivo", "oppo","samsung","redmi","nokia","iphone"]
     selected_elements = set()
     max_iterations = 10
     iteration_count = 0
@@ -51,7 +49,7 @@ for tp in top_topics:
         if index not in selected_elements:
             current_data = data[index]
             title = current_data["title"]
-            if any(brand.lower() in title.lower() for brand in brands):
+            if any(brand.lower() in title.lower() for brand in BRANDS):
                 continue
             selected_elements.add(index)
 

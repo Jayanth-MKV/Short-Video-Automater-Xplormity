@@ -3,7 +3,7 @@ import logging
 
 import requests
 
-from util.const import DATA_PATH, LOG_PATH, NEWS_FETCH_LIMIT
+from util.const import LOG_PATH, NEWS_FETCH_LIMIT,BRANDS
 from util.files import save_json
 
 # Configure logging
@@ -56,6 +56,8 @@ class NEWS:
                 if title in titles_set:
                     continue
                 titles_set.add(title)
+                if any(brand.lower() in title.lower() for brand in BRANDS):
+                    continue
                 description = article.get("description",None)
                 if not description:
                     continue
