@@ -87,8 +87,8 @@ SCRIPT_PROMPT=""""
 # top_news: str = f'https://newsapi.org/v2/everything?q=apple&from={from_date_str}&to={to_date_str}&sortBy=popularity&apiKey={NEWS_API_KEY}'
 
 fontSettings = {
-  "font": "assets/bold_font.ttf",
-  "sfont": "assets/Afont.ttf",
+  "font": "assets/cbold.ttf",
+  "sfont": "assets/ExtraBold.ttf",
   "fontsize": 100,
   "color": "#FFFF00",
   "stroke_color": "black",

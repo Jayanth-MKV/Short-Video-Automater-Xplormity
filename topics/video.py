@@ -40,7 +40,7 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
 
   def generator(txt): 
     print(txt)
-    t=format_text(txt, 20)
+    t=format_text(txt, 16)
     title = "\n".join(t)
     return TextClip(title,size=(size[0]*0.8,SIZE[1]),font=globalSettings["fontSettings"]["sfont"], color=globalSettings["fontSettings"]["color"], stroke_color=globalSettings["fontSettings"]["stroke_color"], stroke_width=globalSettings["fontSettings"]["stroke_width"])
 
