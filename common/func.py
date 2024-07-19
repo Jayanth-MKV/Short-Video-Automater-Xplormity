@@ -12,11 +12,13 @@ from moviepy.audio.io.AudioFileClip import AudioFileClip
 from topics.search import generate_metadata
 from util.files import load_txt,save_metajson
 from topics.youtube import upload_video
-
+import re
+def replace_AI_with_spaces(text):
+    return re.sub(r'\bAI\b', 'Artificial Intelligence', text, flags=re.IGNORECASE)
 
 def get_and_save_news_data(tp,save_to,logger):
   logger.info(f"current top topic's processing: '{tp}'")
-  top_news: str = f"https://newsdata.io/api/1/news?apikey={NEWS_API_KEY}&q={tp} news&country=in,us&language=en&category=top"
+  top_news: str = f"https://newsdata.io/api/1/news?apikey={NEWS_API_KEY}&q={tp} news&country=in,us&language=en&category=technology,education,science"
 
   logger.info(f"top news url: {top_news}")
   logger.info("-----------------------------")
@@ -54,6 +56,7 @@ def get_and_save_transcript(current_data,save_text_to,logger):
         "description":current_data["description"],
         "paragraphs":5
     }))
+    ai_response = replace_AI_with_spaces(ai_response)
     save_txt(save_text_to,ai_response)
     logger.info(f"Generated AI Transcript, Saved at {save_text_to}")
 
