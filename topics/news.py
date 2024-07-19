@@ -50,7 +50,7 @@ class NEWS:
         logging.info(f"fetched article length news_response: {len(self.results)}")
         res=[]
         titles_set=set()
-        while len(res)<10:
+        while len(res)<20:
             for article in self.results:
                 title = article.get("title")
                 if title in titles_set:

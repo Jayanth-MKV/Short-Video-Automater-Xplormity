@@ -46,7 +46,7 @@ for tp in top_topics:
 
     while len(selected_elements) < 5 and iteration_count < max_iterations:
         index = random.randint(0, data_length - 1)
-        # index=3
+        # index=7
         logger.info(f"selected index: {index}")
         if index not in selected_elements:
             current_data = data[index]
