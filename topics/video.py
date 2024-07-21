@@ -12,6 +12,7 @@ from util.text import format_text
 
 from PIL import Image, ImageDraw, ImageOps
 import numpy as np
+from moviepy.video.fx.speedx import speedx
 
 
 def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str, threads: int, subtitles_position: str,final_video_path:str):
@@ -91,7 +92,9 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
   result = result.set_audio(audio)
   if result.duration>60:
       print("[-] Final video is too long. Trimming...")
-      result = result.set_duration(0, 60)
+    #   result = result.set_duration(0, 60)
+      result = speedx(result, 1.2)
+
   print("[+] Audio Done...")
 
   print("[+] Writing video...")

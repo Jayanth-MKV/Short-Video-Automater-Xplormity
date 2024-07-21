@@ -104,7 +104,9 @@ def get_and_save_videos(logger,queries,save_videos_to):
 
         numbers = list(range(0,len(video_urls)))
         k=random.randint(1,2)
-        selected_elements = random.sample(numbers, k)
+        selected_elements = []
+        if len(numbers)>k:
+            selected_elements = random.sample(numbers, k)
 
         for index in selected_elements:
             video_url = video_urls[index]
