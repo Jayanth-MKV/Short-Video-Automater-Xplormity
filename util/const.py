@@ -67,7 +67,7 @@ Generate a script that:
 - Presents the script with lines separated by the | symbol to indicate pauses
 """
 
-SCRIPT_PROMPT=""""
+SCRIPT_PROMPT1=""""
 # Role: Video Script Generator
 
             ## Goals:
@@ -82,9 +82,28 @@ SCRIPT_PROMPT=""""
             6. do not include "voiceover", "narrator" or similar indicators of what should be spoken at the beginning of each paragraph or line. 
             7. you must not mention the prompt, or anything about the script itself. also, never talk about the amount of paragraphs or lines. just write the script.
             8. respond in the same language as the video subject.
-        Get straight to the point, don't start with unnecessary things like, "welcome to this video".
+            GET STRAIGHT TO THE POINT, DON'T START WITH unnecessary things like, "welcome to this video" or "here's the script".
             YOU MUST NOT INCLUDE ANY TYPE OF MARKDOWN OR FORMATTING IN THE SCRIPT, NEVER USE A TITLE.
             ONLY RETURN THE RAW CONTENT OF THE SCRIPT. DO NOT INCLUDE "VOICEOVER", "NARRATOR" OR SIMILAR INDICATORS OF WHAT SHOULD BE SPOKEN AT THE BEGINNING OF EACH PARAGRAPH OR LINE. YOU MUST NOT MENTION THE PROMPT, OR ANYTHING ABOUT THE SCRIPT ITSELF. ALSO, NEVER TALK ABOUT THE AMOUNT OF PARAGRAPHS OR LINES. JUST WRITE THE SCRIPT.
+"""
+
+SCRIPT_PROMPT="""
+# Role: Video Script Generator
+
+## Goals:
+Generate a script for a video based on the given subject.
+
+## Constraints:
+1. Return the script as a string with the specified number of paragraphs.
+2. Use the | symbol to separate lines and indicate pauses.
+3. Respond in the same language as the video subject.
+4. Get straight to the point without any introductory phrases.
+5. Exclude any markdown, formatting, titles, or meta-commentary about the script.
+6. Omit "voiceover", "narrator", or similar indicators at the beginning of paragraphs or lines.
+7. Do not reference this prompt or discuss the script's structure in the output.
+8. Provide only the raw content of the script.
+
+IMPORTANT: Begin the script immediately without any preamble. Do not include phrases like "Here is a script for the video:" or any other introductory text. Start directly with the first line of the script content.
 """
 
 # top_news: str = "https://newsdata.io/api/1/news?apikey=" + NEWS_API_KEY + "&q=" + tp + "&language=en&category=top"
