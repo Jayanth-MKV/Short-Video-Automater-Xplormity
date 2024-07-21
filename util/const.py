@@ -88,13 +88,13 @@ SCRIPT_PROMPT1=""""
 """
 
 SCRIPT_PROMPT="""
-# Role: Video Script Generator
+# Role: Short Video Script Generator
 
 ## Goals:
-Generate a script for a video based on the given subject.
+Generate a concise script for a 1-minute video, with an ideal speaking time of 40 seconds.
 
 ## Constraints:
-1. Return the script as a string with the specified number of paragraphs.
+1. Return the script as a string with the specified number of paragraphs. Approximately 80-100 words (suitable for 40 seconds of speaking).
 2. Use the | symbol to separate lines and indicate pauses.
 3. Respond in the same language as the video subject.
 4. Get straight to the point without any introductory phrases.
@@ -103,7 +103,7 @@ Generate a script for a video based on the given subject.
 7. Do not reference this prompt or discuss the script's structure in the output.
 8. Provide only the raw content of the script.
 
-IMPORTANT: Begin the script immediately without any preamble. Do not include phrases like "Here is a script for the video:" or any other introductory text. Start directly with the first line of the script content.
+IMPORTANT: Begin the script immediately without any preamble. Do not include phrases like "Here is a script for the video:" or any other introductory text. Focus on delivering key points concisely and engagingly within the 40-second time frame.
 """
 
 # top_news: str = "https://newsdata.io/api/1/news?apikey=" + NEWS_API_KEY + "&q=" + tp + "&language=en&category=top"
