@@ -5,11 +5,11 @@ import json
 import boto3
 from botocore.exceptions import ClientError
 from g4f.client import Client
-
-from util.const import SYSTEM_PROMPT
+from groq import Groq
+from util.const import SYSTEM_PROMPT,GROQ_API
 
 # Create a Bedrock Runtime client in the AWS Region of your choice.
-client = boto3.client("bedrock-runtime", region_name="ap-south-1")
+# client = boto3.client("bedrock-runtime", region_name="ap-south-1")
 
 # Set the model ID, e.g., Llama 3 8b Instruct.
 model_id = "meta.llama3-8b-instruct-v1:0"
@@ -29,7 +29,9 @@ class AI:
         return resp
         
     def ask_g4f(self,prompt:str)->str:
-        client = Client()
+        client = Groq(
+            api_key=GROQ_API,
+        )
         response = client.chat.completions.create(
             model="llama3-8b-8192",
             messages=[{"role": "user", "content": prompt}],
