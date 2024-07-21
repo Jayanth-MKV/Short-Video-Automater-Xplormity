@@ -95,7 +95,7 @@ Generate a concise script for a 1-minute video, with an ideal speaking time of 4
 
 ## Constraints:
 1. Return the script as a string with the specified number of paragraphs. Approximately 80-100 words (suitable for 40 seconds of speaking).
-2. Use the | symbol to separate lines and indicate pauses.
+2. STRICTLY Use the | symbol to separate lines and indicate pauses.
 3. Respond in the same language as the video subject.
 4. Get straight to the point without any introductory phrases.
 5. Exclude any markdown, formatting, titles, or meta-commentary about the script.
