@@ -19,10 +19,19 @@ class AI:
     def __init__(self, model_id: str="meta.llama3-8b-instruct-v1:0"):
         self.model_id = model_id
         
-    def ask_g4f(self,prompt:str)->str:
+    def ask_g4(self,prompt:str)->str:
         client = Client()
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": prompt}],
+        )
+        resp = response.choices[0].message.content
+        return resp
+        
+    def ask_g4f(self,prompt:str)->str:
+        client = Client()
+        response = client.chat.completions.create(
+            model="llama3-8b-8192",
             messages=[{"role": "user", "content": prompt}],
         )
         resp = response.choices[0].message.content
