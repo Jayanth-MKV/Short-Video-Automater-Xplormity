@@ -11,6 +11,7 @@ PEXELS_API = os.getenv('PEXELS_API')
 PIXABAY_API = os.getenv('PIXABAY_API')
 ASSEMBLY_AI_API_KEY = os.getenv('ASSEMBLY_AI_API_KEY')
 IMAGEMAGICK_BINARY = os.getenv('IMAGEMAGICK_BINARY')
+GROQ_API = os.getenv('GROQ')
 SIZE=(1080,1920)
 
 BRANDS = ["vivo", "oppo","samsung","redmi","nokia","iphone","pixel"]
