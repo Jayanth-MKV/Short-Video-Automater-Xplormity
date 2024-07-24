@@ -121,7 +121,7 @@ def get_and_save_videos(logger,queries,save_videos_to):
     return True
 
 
-def get_and_save_metadata(logger,save_text_to,current_data,save_metadata_to):
+def get_and_save_metadata(logger,save_text_to,current_data,save_metadata_to,credits):
     logger.info(f"Getting Video Metadata")
     script = load_txt(save_text_to)
     logger.info(f"Saving Metadata JSON")
@@ -131,7 +131,7 @@ def get_and_save_metadata(logger,save_text_to,current_data,save_metadata_to):
 
     meta_json = {
         "title": metadata[0],
-        "description": metadata[1],
+        "description": metadata[1]+"\n"+credits,
         "keywords": metadata[2]
     }
     save_metajson(save_metadata_to,meta_json)

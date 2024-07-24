@@ -4,8 +4,9 @@ load_dotenv(override=True)
 
 NEWS_API_KEY: str = os.getenv('NEWSDATA_API')
 NEWS_FETCH_LIMIT: int = 20
-LOG_PATH: str = 'logs/'
+LOG_PATH: str = 'YT/logs/'
 DATA_PATH: str = 'YT/data'
+SONGS_PATH:str = 'songs/'
 SUBSCRIBE_PATH: str = "assets/subscribe.mp4"
 PEXELS_API = os.getenv('PEXELS_API')
 PIXABAY_API = os.getenv('PIXABAY_API')
@@ -220,3 +221,71 @@ VOICES = [
     "en_male_funny",  # wacky
     "en_female_emotional",  # peaceful
 ]
+
+
+
+CREDITS={
+  "neon":"""
+Neon Underworld by Punch Deck | https://soundcloud.com/punch-deck
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY 3.0
+https://creativecommons.org/licenses/by/3.0/
+""",
+"powerful":"""
+Powerful by MaxKoMusic | https://maxkomusic.com/
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY-SA 3.0
+https://creativecommons.org/licenses/by-sa/3.0/
+""",
+"cinema":"""
+Cinematic Epicness by MaxKoMusic | https://maxkomusic.com/
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY-SA 3.0
+https://creativecommons.org/licenses/by-sa/3.0/
+""",
+"perfection":"""Perfection by MaxKoMusic | https://maxkomusic.com/
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY-SA 3.0
+https://creativecommons.org/licenses/by-sa/3.0/
+""",
+"cutting":"""Music: Cutting Edge by Shane Ivers - https://www.silvermansound.com
+Licensed under Creative Commons Attribution 4.0 International License
+https://creativecommons.org/licenses/by/4.0/
+Music promoted by https://www.chosic.com/free-music/all/ 
+""",
+"pure":"""
+Pure Epicness by MaxKoMusic | https://maxkomusic.com/
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY-SA 3.0
+https://creativecommons.org/licenses/by-sa/3.0/
+""",
+"truepatriot":"""
+True Patriot by MaxKoMusic | https://maxkomusic.com/
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY-SA 3.0
+https://creativecommons.org/licenses/by-sa/3.0/
+""",
+"future":"""
+Building The Future by MaxKoMusic | https://maxkomusic.com/
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY-SA 3.0
+https://creativecommons.org/licenses/by-sa/3.0/
+""",
+"adv":"""
+The Big Adventure by MaxKoMusic | https://maxkomusic.com/
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY-SA 3.0
+https://creativecommons.org/licenses/by-sa/3.0/
+""",
+"spark":"""
+Music: Spark Of Inspiration by Shane Ivers - https://www.silvermansound.com
+Licensed under Creative Commons Attribution 4.0 International License
+https://creativecommons.org/licenses/by/4.0/
+Music promoted by https://www.chosic.com/free-music/all/ 
+""",
+"weather":"""Weather Report by MaxKoMusic | https://maxkomusic.com/
+Music promoted by https://www.chosic.com/free-music/all/
+Creative Commons CC BY-SA 3.0
+https://creativecommons.org/licenses/by-sa/3.0/
+"""
+}

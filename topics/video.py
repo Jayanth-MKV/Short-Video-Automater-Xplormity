@@ -10,12 +10,13 @@ from util.const import get_settings
 from util.const import TITLES,SIZE,COLORS,SUBSCRIBE_PATH
 from util.text import format_text
 
-from PIL import Image, ImageDraw, ImageOps
+from PIL import Image, ImageDraw
 import numpy as np
 from moviepy.video.fx.speedx import speedx
+from moviepy.audio.fx.volumex import volumex
 
 
-def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str, threads: int, subtitles_position: str,final_video_path:str):
+def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str, threads: int, subtitles_position: str,final_video_path:str,bg_music_path:str):
   """
   This function creates the final video, with subtitles and audio.
   Returns:
@@ -76,6 +77,7 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
   mask_clip = ImageClip(np.array(rounded_mask), ismask=True).set_duration(duration)  
   
 
+  bg_audio = AudioFileClip(bg_music_path).fx(volumex,0.5)
 
 
   result = CompositeVideoClip([
@@ -88,8 +90,14 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
 
   print("[+] Adding audio...")
   # Add the audio
-  audio = AudioFileClip(tts_path)
+  audio1 = AudioFileClip(tts_path)
+  audio = CompositeAudioClip([
+      bg_audio.set_duration(duration),
+      audio1
+  ])  
+  
   result = result.set_audio(audio)
+  
   if result.duration>60:
       print("[-] Final video is too long. Trimming...")
     #   result = result.set_duration(0, 60)
@@ -103,7 +111,7 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
 
 
 
-def CombineVideos(audio_path:str,subtitles_path:str,video_urls:list[str],combined_video_path:str,final_video_path:str):
+def CombineVideos(audio_path:str,subtitles_path:str,video_urls:list[str],combined_video_path:str,final_video_path:str,bg_music_path:str):
     temp_audio = AudioFileClip(audio_path)
     n_threads = 2
 
@@ -114,7 +122,7 @@ def CombineVideos(audio_path:str,subtitles_path:str,video_urls:list[str],combine
     # Put everything together
     subtitles_position="center"
     try:
-        generate_video(combined_video_path, audio_path, subtitles_path, n_threads or 2, subtitles_position,final_video_path)
+        generate_video(combined_video_path, audio_path, subtitles_path, n_threads or 2, subtitles_position,final_video_path,bg_music_path)
     except Exception as e:
         print(f"[-] Error generating final video: {e}")
 

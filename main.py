@@ -7,7 +7,7 @@ from moviepy.video.io.VideoFileClip import VideoFileClip
 from common.func import get_and_save_news_data, get_and_save_subtitles, get_and_save_transcript, get_and_save_videos, get_current_item, load_and_get_audio, load_and_get_item,get_and_save_metadata,upload_data_to_youtube
 from topics.video import CombineVideos
 from topics.search import get_search_terms
-from util.const import DATA_PATH, LOG_PATH,BRANDS, NEWS_API_KEY, PEXELS_API, PIXABAY_API
+from util.const import DATA_PATH, LOG_PATH,BRANDS, SONGS_PATH, CREDITS, PIXABAY_API
 from util.logger import MultiLogger
 from util.files import load_txt
 
@@ -44,7 +44,7 @@ for tp in top_topics:
 
     while len(selected_elements) < 5 and iteration_count < max_iterations:
         index = random.randint(0, data_length - 1)
-        # index=7
+        index=22
         logger.info(f"selected index: {index}")
         if index not in selected_elements:
             current_data = data[index]
@@ -111,13 +111,20 @@ for tp in top_topics:
         save_combined_video_to=f"{index_folder}/combined_{tp}.mp4"
         save_final_video_to=f"{index_folder}/final_{tp}.mp4"
 
+        bg_music_list = os.listdir(SONGS_PATH)
+        bg_music = random.choice(bg_music_list)
+        print(bg_music)
+        bg_name = bg_music.split('.')[0].lower()
+        credits = CREDITS.get(bg_name," ")
+        bg_music_path = os.path.join(SONGS_PATH,bg_music)
+
         if not os.path.exists(save_final_video_to):
-            CombineVideos(save_audio_to,save_subtitles_to,video_urls,save_combined_video_to,save_final_video_to)
+            CombineVideos(save_audio_to,save_subtitles_to,video_urls,save_combined_video_to,save_final_video_to,bg_music_path)
 
         # get metadata
         save_metadata_to=f"{index_folder}/metadata_{tp}.json"
         if not os.path.exists(save_metadata_to):
-            get_and_save_metadata(logger,save_text_to,current_data,save_metadata_to)
+            get_and_save_metadata(logger,save_text_to,current_data,save_metadata_to,credits)
         
         logger.info(f"Got Video Metadata")
         break
