@@ -104,7 +104,7 @@ def generate_metadata(video_subject: str, script: str) -> tuple[str, str, list[s
     """  
   
     # Generate title  
-    title = g4f.ask_g4f(title_prompt).strip().strip("\"")+" #shorts"  
+    title = g4f.ask_g4f(title_prompt).strip().strip("\"")+" #youtubeshorts #youtube #shorts #viral #trending #ai #news #viralnewstoday #viralshorts"  
     
     # Build prompt for description  
     description_prompt = f"""  
