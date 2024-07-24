@@ -104,7 +104,7 @@ def generate_metadata(video_subject: str, script: str) -> tuple[str, str, list[s
     """  
   
     # Generate title  
-    title = g4f.ask_g4f(title_prompt).strip().strip("\"")+" #youtubeshorts #youtube #shorts #viral #trending #ai #news #viralnewstoday #viralshorts"  
+    title = g4f.ask_g4f(title_prompt).strip().strip("\"")+" #youtubeshorts #youtube #shorts  #ai #news"  
     
     # Build prompt for description  
     description_prompt = f"""  
@@ -113,9 +113,9 @@ def generate_metadata(video_subject: str, script: str) -> tuple[str, str, list[s
     {script}  
     STRICTLY GIVE JUST THE DESCRIPTION WITHOUT ANY MARKDOWN. JUST GIVE THE TEXT
     """  
-  
+    
     # Generate description  
-    description = g4f.ask_g4f(description_prompt).strip()  
+    description = g4f.ask_g4f(description_prompt).strip()  + " #machinelearning #ml #ai #artificialintelligence #datascientist #python #datascience #ai #robot"
   
     # Generate keywords  
     keywords = get_search_terms(video_subject, 6, script)  
