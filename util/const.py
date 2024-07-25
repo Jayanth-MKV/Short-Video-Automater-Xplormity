@@ -222,7 +222,7 @@ VOICES = [
     "en_female_emotional",  # peaceful
 ]
 
-LIST_VOICES = ["en_male_narration", "en_male_funny", "en_female_emotional", "en_uk_001","en_us_001" ]
+LIST_VOICES = ["en_male_narration", "en_male_funny", "en_female_emotional" ]
 
 CREDITS={
   "neon":"""
