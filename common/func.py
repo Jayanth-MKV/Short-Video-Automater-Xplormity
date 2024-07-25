@@ -6,7 +6,7 @@ from topics.audio import generate_subtitles
 from topics.news import NEWS
 from topics.stock import search_for_stock_videos
 from topics.voice import tts
-from util.const import DATA_PATH, NEWS_API_KEY, PEXELS_API,SCRIPT_PROMPT
+from util.const import LIST_VOICES, NEWS_API_KEY, PEXELS_API,SCRIPT_PROMPT
 from util.files import load_json, load_txt, make_dir, save_txt, save_video
 from moviepy.audio.io.AudioFileClip import AudioFileClip
 from topics.search import generate_metadata
@@ -64,7 +64,9 @@ def load_and_get_audio(transcript_path,save_audio_to,logger):
     logger.info(f"Loading script From txt at {transcript_path}")
     script = load_txt(transcript_path)
     logger.info("Generating Voice For script")
-    tts(script, "en_uk_001", save_audio_to)
+    voice = random.choice(LIST_VOICES)
+    logger.info(f"Selected Voice for script : {voice}")
+    tts(script, voice, save_audio_to)
     logger.info(f"Saved Voice to {save_audio_to}")
     logger.info(f"Checking Voice duration")
     if not os.path.exists(save_audio_to):
@@ -74,7 +76,7 @@ def load_and_get_audio(transcript_path,save_audio_to,logger):
     while duration>56:
       print("[-] Final audio is too long. Trimming...")
       sc = "|".join(script.split("|")[:-1])
-      tts(sc, "en_uk_001", save_audio_to)
+      tts(sc, "en_male_narration", save_audio_to)
       duration =  AudioFileClip(save_audio_to).duration
       logger.info(f"Updated Voice duration to {duration}")
     return True

@@ -77,7 +77,7 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
   mask_clip = ImageClip(np.array(rounded_mask), ismask=True).set_duration(duration)  
   
 
-  bg_audio = AudioFileClip(bg_music_path).fx(volumex,0.5)
+  bg_audio = AudioFileClip(bg_music_path).fx(volumex,0.4)
 
 
   result = CompositeVideoClip([
@@ -92,8 +92,8 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
   # Add the audio
   audio1 = AudioFileClip(tts_path)
   audio = CompositeAudioClip([
+      audio1.fx(volumex,2),
       bg_audio.set_duration(duration),
-      audio1
   ])  
   
   result = result.set_audio(audio)
