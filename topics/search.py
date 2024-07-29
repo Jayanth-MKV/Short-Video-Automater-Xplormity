@@ -104,7 +104,7 @@ def generate_metadata(video_subject: str, script: str) -> tuple[str, str, list[s
     """  
   
     # Generate title  
-    title = g4f.ask_g4f(title_prompt).strip().strip("\"")+" #youtubeshorts #youtube #shorts  #ai #news"  
+    title = g4f.ask_g4f(title_prompt).strip().strip("\"")+" #shorts #viralreels"  
     
     # Build prompt for description  
     description_prompt = f"""  
@@ -115,7 +115,7 @@ def generate_metadata(video_subject: str, script: str) -> tuple[str, str, list[s
     """  
     
     # Generate description  
-    description = g4f.ask_g4f(description_prompt).strip()  + " #machinelearning #ml #ai #artificialintelligence #datascientist #python #datascience #ai #robot"
+    description = g4f.ask_g4f(description_prompt).strip()  + " #ai #ainews #youtubeshorts #youtube #news  #machinelearning #ml #ai #artificialintelligence #datascientist #python #datascience #ai #robot"
   
     # Generate keywords  
     keywords = get_search_terms(video_subject, 6, script)  

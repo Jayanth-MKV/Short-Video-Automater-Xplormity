@@ -76,7 +76,7 @@ def load_and_get_audio(transcript_path,save_audio_to,logger):
     while duration>56:
       print("[-] Final audio is too long. Trimming...")
       sc = "|".join(script.split("|")[:-1])
-      tts(sc, "en_male_narration", save_audio_to)
+      tts(sc, voice , save_audio_to)
       duration =  AudioFileClip(save_audio_to).duration
       logger.info(f"Updated Voice duration to {duration}")
     return True
