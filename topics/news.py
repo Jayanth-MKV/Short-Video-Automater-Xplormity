@@ -67,6 +67,7 @@ class NEWS:
                 # logging.info(
                 #     f"{{title:{title}, description :{description}, link :{link}, category :{category},keywords :{keywords}}}")
                 data ={
+                    "index":len(res),
                     "title":title,
                     "description":description,
                     "link":link,
