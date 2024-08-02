@@ -2,8 +2,6 @@ import datetime
 import os
 import random
 
-from moviepy.video.io.VideoFileClip import VideoFileClip
-
 from common.func import get_and_save_news_data, get_and_save_subtitles, get_and_save_transcript, get_and_save_videos, get_current_item, load_and_get_audio, load_and_get_item,get_and_save_metadata,upload_data_to_youtube
 from topics.video import CombineVideos
 from topics.search import get_search_terms
@@ -44,7 +42,7 @@ for tp in top_topics:
 
     while len(selected_elements) < 5 and iteration_count < max_iterations:
         index = random.randint(0, data_length - 1)
-        # index=22
+        # index=9
         logger.info(f"selected index: {index}")
         if index not in selected_elements:
             current_data = data[index]
@@ -75,6 +73,18 @@ for tp in top_topics:
                 logger.info("Error Obtaining Transcript")
                 break
         
+        save_audio_to=f"{index_folder}/audio_{tp}.mp3"
+        if not os.path.exists(save_audio_to):
+            if not load_and_get_audio(save_text_to,save_audio_to,logger):
+                logger.info(f"Audio Not Saved at {save_audio_to}")
+                break
+
+        save_subtitles_to=f"{index_folder}/subtitles_{tp}.srt"
+        
+        if not os.path.exists(save_subtitles_to):
+            get_and_save_subtitles(logger,save_audio_to,save_subtitles_to)
+
+
         save_videos_to=f"{index_folder}/videos"
         
         if not os.path.exists(save_videos_to):
@@ -90,22 +100,12 @@ for tp in top_topics:
                 query = st
                 retries +=1
 
-        save_audio_to=f"{index_folder}/audio_{tp}.mp3"
-        if not os.path.exists(save_audio_to):
-            if not load_and_get_audio(save_text_to,save_audio_to,logger):
-                logger.info(f"Audio Not Saved at {save_audio_to}")
-                break
-
 
         files = os.listdir(save_videos_to)
         video_urls = [f"{save_videos_to}/{f}" for f in files if f.endswith(".mp4")]
         logger.info(f"Found {len(video_urls)} videos")        
         
         # get srt
-        save_subtitles_to=f"{index_folder}/subtitles_{tp}.srt"
-        
-        if not os.path.exists(save_subtitles_to):
-            get_and_save_subtitles(logger,save_audio_to,save_subtitles_to)
 
         # combine video and audio
         save_combined_video_to=f"{index_folder}/combined_{tp}.mp4"
